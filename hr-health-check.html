@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Health Check | Shore HR</title>
+  <style>
+    :root {
+      --teal:        #198e93;
+      --teal-dark:   #0f7479;
+      --teal-deep:   #0a4f53;
+      --teal-light:  #43b3b7;
+      --teal-pale:   #e8f3f3;
+      --paper:       #ffffff;
+      --ink:         #0e0e0e;
+      --ink-mid:     rgba(14,14,14,0.62);
+      --ink-mute:    rgba(14,14,14,0.45);
+      --grey:        #e8e8e8;
+      --grey-soft:   #f4f3ef;
+
+      --display: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      --body:    "Avenir Next", "Avenir", "Nunito Sans", "Helvetica Neue", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--body);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: #fff;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--grey);
+    }
+
+    .logo-img {
+      display: block;
+      height: 56px;
+      width: auto;
+    }
+
+    .logo-text-fallback {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      color: var(--teal);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .header-tag {
+      font-family: var(--display);
+      font-size: 11px;
+      color: var(--ink-mid);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTAINER ── */
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 0 0;
+    }
+
+    /* ── SCREENS ── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ── INTRO ── */
+    .intro-hero {
+      background: var(--teal);
+      padding: 56px 32px;
+      color: #fff;
+    }
+
+    .intro-headline {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 56px;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin-bottom: 22px;
+      text-wrap: balance;
+      color: #fff;
+    }
+
+    .intro-sub {
+      font-size: 18px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.92);
+      max-width: 460px;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .btn-start {
+      display: inline-block;
+      background: #fff;
+      color: var(--teal);
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 16px 34px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      letter-spacing: -0.005em;
+    }
+
+    .btn-start:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    }
+
+    /* Nat note */
+    .nat-note {
+      background: var(--grey-soft);
+      padding: 36px 32px;
+    }
+
+    .nat-note-eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--teal);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      border-radius: 999px;
+    }
+
+    .nat-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .nat-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--teal-pale);
+    }
+
+    .nat-note p {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .nat-note .nat-sig {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── QUESTIONS ── */
+    .q-screen-pad {
+      padding: 32px;
+    }
+
+    .progress-wrap {
+      margin-bottom: 32px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--display);
+      margin-bottom: 12px;
+    }
+
+    .progress-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-mute);
+    }
+
+    .progress-count {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .progress-count em {
+      font-style: normal;
+      color: var(--ink-mute);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .progress-bar {
+      height: 3px;
+      background: var(--grey);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--teal);
+      transition: width 0.4s ease;
+    }
+
+    .q-label {
+      display: inline-block;
+      padding: 6px 12px;
+      background: var(--teal);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .q-text {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 28px;
+      text-wrap: balance;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 2px solid var(--grey);
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+      user-select: none;
+    }
+
+    .option:hover {
+      border-color: var(--teal);
+    }
+
+    .option.selected {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .option-radio {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--grey);
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.18s;
+      position: relative;
+      background: #fff;
+    }
+
+    .option:hover .option-radio {
+      border-color: var(--teal);
+    }
+
+    .option.selected .option-radio {
+      border-color: #fff;
+      background: #fff;
+    }
+
+    .option.selected .option-radio::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--teal);
+    }
+
+    .option-label {
+      font-size: 16px;
+      line-height: 1.4;
+      font-weight: 500;
+      font-family: var(--body);
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--ink-mute);
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 14px 0;
+      transition: color 0.15s;
+    }
+
+    .btn-back:hover { color: var(--ink); }
+
+    .btn-next {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 30px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: var(--display);
+      transition: background 0.2s, transform 0.18s;
+      opacity: 0.3;
+      pointer-events: none;
+      letter-spacing: -0.005em;
+    }
+
+    .btn-next.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .btn-next.on:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ── RESULTS ── */
+    .results-hero {
+      padding: 56px 32px;
+      color: #fff;
+    }
+
+    .results-hero.green  { background: var(--teal); }
+    .results-hero.amber  { background: #c98a2b; }
+    .results-hero.red    { background: #a8392c; }
+
+    .result-eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .score-block {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .score-num {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 140px;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      color: #fff;
+    }
+
+    .score-denom {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 28px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      padding-bottom: 14px;
+    }
+
+    .result-h {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 44px;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .result-intro-text {
+      font-size: 17px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.92);
+      max-width: 460px;
+    }
+
+    .accent-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .accent-mark .bar {
+      width: 56px;
+      height: 4px;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .accent-mark .caption {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      font-family: var(--display);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .results-body {
+      padding: 40px 32px 32px;
+    }
+
+    .tips-label {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 22px;
+      text-wrap: balance;
+    }
+
+    .tip-card {
+      padding: 20px 22px;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--teal);
+      background: var(--grey-soft);
+    }
+
+    .tip-card strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .tip-card-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* ── CTA CARD (deep teal, optional form) ── */
+    .cta-card {
+      background: var(--teal-deep);
+      color: #fff;
+      padding: 40px 32px;
+      margin-top: 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .cta-nat {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .cta-nat-text {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .cta-nat-text small {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .cta-p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
+    /* Form inside dark CTA card */
+    .cta-form { margin-top: 4px; }
+
+    .cta-form .field-group { margin-bottom: 16px; }
+
+    .cta-form .field-label {
+      display: block;
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 7px;
+    }
+
+    .cta-form .field-optional {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .cta-form .field-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid rgba(255,255,255,0.2);
+      font-size: 15px;
+      font-family: var(--body);
+      color: var(--ink);
+      background: #fff;
+      transition: border-color 0.18s;
+      outline: none;
+    }
+
+    .cta-form .field-input:focus { border-color: var(--teal-light); }
+
+    .cta-form .gdpr-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(255,255,255,0.1);
+      padding: 14px 16px;
+      margin: 20px 0 0;
+      border-left: 4px solid rgba(255,255,255,0.3);
+    }
+
+    .cta-form .gdpr-box input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--teal-light);
+      cursor: pointer;
+    }
+
+    .cta-form .gdpr-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    .cta-form .gdpr-label a { color: #fff; font-weight: 700; }
+
+    .cta-form .err {
+      font-size: 13px;
+      color: #ffaaaa;
+      margin-top: 10px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .cta-form .btn-submit {
+      width: 100%;
+      background: #fff;
+      color: var(--teal-deep);
+      border: none;
+      border-radius: 999px;
+      padding: 17px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: var(--display);
+      margin-top: 20px;
+      transition: background 0.2s, transform 0.18s;
+      letter-spacing: -0.005em;
+    }
+
+    .cta-form .btn-submit:hover {
+      background: var(--grey-soft);
+      transform: translateY(-1px);
+    }
+
+    .form-sent {
+      text-align: center;
+      padding: 20px 0 8px;
+    }
+
+    .form-sent p {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .form-sent .sent-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      font-family: var(--body);
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+
+    /* ── FOOTER ── */
+    .tool-footer {
+      padding: 32px;
+      font-family: var(--display);
+      font-size: 12px;
+      color: var(--ink-mute);
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-top: 1px solid var(--grey);
+    }
+
+    .tool-footer a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--grey);
+    }
+
+    .tool-footer a:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .site-header { padding: 14px 20px; }
+      .logo-img { height: 44px; }
+      .header-tag { display: none; }
+
+      .intro-hero,
+      .results-hero { padding: 44px 24px; }
+      .q-screen-pad,
+      .results-body,
+      .nat-note { padding: 28px 24px; }
+      .cta-card { padding: 32px 24px; }
+      .tool-footer { padding: 28px 24px; }
+
+      .intro-headline { font-size: 42px; }
+      .q-text { font-size: 26px; }
+      .result-h { font-size: 34px; }
+      .score-num { font-size: 110px; }
+      .tips-label { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://www.shorehr.co.uk" aria-label="Shore HR">
+    <!-- Replace with: <img src="shore-hr-logo-stacked.png" alt="Shore HR" class="logo-img"> -->
+    <span class="logo-text-fallback">Shore HR</span>
+  </a>
+  <span class="header-tag">Practical, Honest HR Support</span>
+</header>
+
+<div class="wrap">
+
+  <!-- ══════════════════════ INTRO ══════════════════════ -->
+  <div class="screen active" id="s-intro">
+
+    <div class="intro-hero">
+      <h1 class="intro-headline">Is your HR actually in shape?</h1>
+      <p class="intro-sub">7 quick questions to find out where your business stands — and what, if anything, you need to look at.</p>
+      <button class="btn-start" onclick="startQuiz()">Start the check →</button>
+    </div>
+
+    <div class="nat-note">
+      <div class="nat-note-eyebrow">A note from Natalie</div>
+      <div class="nat-row">
+        <img
+          src="https://static.wixstatic.com/media/4e7009_d35a2115ddf849b09eee4d510d8e4b0b~mv2.png"
+          alt="Natalie Lakin, Shore HR"
+          class="nat-photo"
+          onerror="this.style.display='none'"
+        >
+        <div>
+          <p>Most small businesses are better protected than they think — and a few are more exposed than they realise. This check takes about 3 minutes and gives you a straight answer either way. When you're done, I'll personally review your answers and follow up if there's anything worth a conversation.</p>
+          <span class="nat-sig">— Natalie Lakin, Shore HR</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════ QUESTIONS ══════════════════════ -->
+  <div class="screen" id="s-questions">
+    <div class="q-screen-pad">
+
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span class="progress-label" id="prog-label">Question</span>
+          <span class="progress-count"><span id="prog-num">1</span><em> / 7</em></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="q-label" id="q-label">Question 1</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="q-options"></div>
+
+      <div class="nav-row">
+        <button class="btn-back" id="btn-back" onclick="prevQ()">← Back</button>
+        <button class="btn-next" id="btn-next" onclick="nextQ()">Next →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════ RESULTS ══════════════════════ -->
+  <div class="screen" id="s-results">
+
+    <div class="results-hero green" id="r-hero">
+      <div class="result-eyebrow">Your HR Health Check</div>
+
+      <div class="score-block">
+        <div class="score-num" id="r-score">—</div>
+        <div class="score-denom">/ 18</div>
+      </div>
+
+      <h2 class="result-h" id="r-title"></h2>
+      <p class="result-intro-text" id="r-intro"></p>
+
+      <div class="accent-mark">
+        <div class="bar"></div>
+        <div class="caption">Result reviewed personally by Shore HR</div>
+      </div>
+    </div>
+
+    <div class="results-body">
+      <p class="tips-label" id="r-tips-label">Here's what to know:</p>
+      <div id="r-tips"></div>
+
+      <div class="cta-card">
+        <div class="cta-row">
+          <img
+            src="https://static.wixstatic.com/media/4e7009_d35a2115ddf849b09eee4d510d8e4b0b~mv2.png"
+            alt="Nat"
+            class="cta-nat"
+            onerror="this.style.display='none'"
+          >
+          <div class="cta-nat-text">
+            Want Nat to take a look?
+            <small>Personally, not an automation</small>
+          </div>
+        </div>
+        <p class="cta-p" id="r-cta-text"></p>
+
+        <div id="cta-form-wrap" class="cta-form">
+          <form id="the-form" action="https://formspree.io/f/xeedebrr" method="POST">
+
+            <!-- Hidden answer fields — populated when results load -->
+            <input type="hidden" name="Q1_Headcount"          id="fq1">
+            <input type="hidden" name="Q2_Written_contracts"  id="fq2">
+            <input type="hidden" name="Q3_Right_to_work"      id="fq3">
+            <input type="hidden" name="Q4_NLW"                id="fq4">
+            <input type="hidden" name="Q5_Disciplinary"       id="fq5">
+            <input type="hidden" name="Q6_Sickness"           id="fq6">
+            <input type="hidden" name="Q7_Dismissal"          id="fq7">
+            <input type="hidden" name="Result_bucket"         id="f-bucket">
+            <input type="hidden" name="Score"                 id="f-score">
+
+            <div class="field-group">
+              <label class="field-label" for="f-name">Your first name</label>
+              <input type="text" id="f-name" name="name" class="field-input" placeholder="e.g. Sarah" required>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="f-email">Email address</label>
+              <input type="email" id="f-email" name="email" class="field-input" placeholder="hello@yourbusiness.co.uk" required>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="f-biz">
+                Business name <span class="field-optional">(optional)</span>
+              </label>
+              <input type="text" id="f-biz" name="business_name" class="field-input" placeholder="Your business">
+            </div>
+
+            <div class="gdpr-box">
+              <input type="checkbox" id="f-gdpr" name="gdpr_consent" value="yes" required>
+              <label class="gdpr-label" for="f-gdpr">
+                I'm happy for Shore HR to contact me about my results. I understand my information will be handled in line with the <a href="#" target="_blank">privacy policy</a>.
+              </label>
+            </div>
+
+            <p class="err" id="f-err">Please fill in your name and email address, and tick the consent box to continue.</p>
+
+            <button type="button" class="btn-submit" onclick="handleSubmit()">Send my results to Nat →</button>
+
+          </form>
+        </div>
+
+        <div id="cta-sent" style="display:none;" class="form-sent">
+          <p>Done — Nat will be in touch.</p>
+          <p class="sent-sub">She'll have your results in front of her, so no need to explain everything from scratch.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tool-footer">
+      <a href="https://www.shorehr.co.uk">Shore HR</a> · <a href="#">Privacy Policy</a><br>
+      Shore HR Limited · Driffield, East Yorkshire
+    </div>
+
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+// ─────────────────────────────────────────────────────────────────
+// QUESTIONS
+// ─────────────────────────────────────────────────────────────────
+const Qs = [
+  {
+    text: "How many people work in your business, including yourself?",
+    scored: false,
+    field: "fq1",
+    opts: [
+      { label: "Just me — sole trader", score: 0 },
+      { label: "2 to 5 people", score: 0 },
+      { label: "6 to 15 people", score: 0 },
+      { label: "More than 15", score: 0 }
+    ]
+  },
+  {
+    text: "Do your employees have a written contract or written statement of terms?",
+    scored: true,
+    field: "fq2",
+    opts: [
+      { label: "Yes, everyone has one", score: 3 },
+      { label: "Most do, but not all", score: 2 },
+      { label: "I'm not sure", score: 1 },
+      { label: "No", score: 0 }
+    ]
+  },
+  {
+    text: "When someone joins your team, do you check they're legally allowed to work in the UK — and keep a record of it?",
+    scored: true,
+    field: "fq3",
+    opts: [
+      { label: "Yes, every time — and I keep the records", score: 3 },
+      { label: "Yes, but I'm not consistent with the record-keeping", score: 2 },
+      { label: "Sometimes — no consistent process", score: 1 },
+      { label: "No, I didn't know I needed to", score: 0 }
+    ]
+  },
+  {
+    text: "Are you confident everyone you employ is being paid at least the National Living Wage?",
+    scored: true,
+    field: "fq4",
+    opts: [
+      { label: "Yes, definitely", score: 3 },
+      { label: "Mostly — but I haven't checked the rates recently", score: 2 },
+      { label: "I'm not sure if we're keeping up", score: 1 },
+      { label: "Honestly, I don't know", score: 0 }
+    ]
+  },
+  {
+    text: "If you had a problem with an employee's behaviour — or they had a complaint about work — would you know what steps to follow?",
+    scored: true,
+    field: "fq5",
+    opts: [
+      { label: "Yes, I have a process and I'm confident in it", score: 3 },
+      { label: "I'd figure it out, but it's not written down anywhere", score: 2 },
+      { label: "I'd struggle — I wouldn't really know where to start", score: 1 },
+      { label: "No process at all", score: 0 }
+    ]
+  },
+  {
+    text: "When an employee is off sick, do you have a clear way of handling it?",
+    scored: true,
+    field: "fq6",
+    opts: [
+      { label: "Yes, clear process — I know what to do and when", score: 3 },
+      { label: "Sort of — I manage it but it's a bit ad hoc", score: 2 },
+      { label: "Not really — I deal with it case by case", score: 1 },
+      { label: "No clear process at all", score: 0 }
+    ]
+  },
+  {
+    text: "If you had to let someone go tomorrow, how confident are you that you'd handle it the right way?",
+    scored: true,
+    field: "fq7",
+    opts: [
+      { label: "Very confident — I know the process", score: 3 },
+      { label: "Fairly confident — I think I know what to do", score: 2 },
+      { label: "Not very confident — I'd be guessing", score: 1 },
+      { label: "I wouldn't know where to start", score: 0 }
+    ]
+  }
+];
+
+// ─────────────────────────────────────────────────────────────────
+// RESULTS COPY
+// ─────────────────────────────────────────────────────────────────
+const Results = {
+  green: {
+    color: "green",
+    title: "You're in pretty good shape.",
+    intro: "Right, you're in better shape than a lot of small businesses. You've got the basics covered.",
+    tipsLabel: "One thing to keep in mind",
+    tips: [
+      {
+        heading: "Keep it current",
+        body: "Employment law moves faster than most people realise. Give it a check every so often — written terms in particular. The rules changed in 2020 and plenty of employers are still doing it the old way."
+      },
+      {
+        heading: "[NAT TO ADVISE]",
+        body: "What's the one thing you'd say to a client who's in good shape but you don't want to leave empty-handed? Something specific you find yourself telling people who think they're sorted."
+      }
+    ],
+    cta: "Drop your details below and Nat will personally follow up with a few things worth keeping an eye on — even when you're in good shape."
+  },
+  amber: {
+    color: "amber",
+    title: "There are a few gaps worth looking at.",
+    intro: "You're not in a bad position, but the audit has flagged a few things worth sorting before something goes wrong. The gaps that catch employers out are usually the ones they didn't know were there.",
+    tipsLabel: "Here's what to know",
+    tips: [
+      {
+        heading: "The ACAS Code applies whether you know about it or not",
+        body: "Even if you don't have a formal policy, you're still expected to follow it. Ignore it and end up at tribunal, and the award against you can go up by 25%."
+      },
+      {
+        heading: "Probation periods don't give you a free pass",
+        body: "Most business owners assume they do. They don't. And this has become more important with recent employment law changes."
+      },
+      {
+        heading: "Written terms have to be given on day one",
+        body: "Not after a couple of months like it used to be. Still doing it the old way? Easy fix."
+      }
+    ],
+    cta: "Drop your details below and Nat will be in touch to talk through the specific gaps your answers flagged. No hard sell — just a practical conversation about what's worth sorting first."
+  },
+  red: {
+    color: "red",
+    title: "There are some things that need sorting.",
+    intro: "I'll be straight with you. The audit has flagged some things that need attention. Nothing that can't be fixed. But sort them before something goes wrong.",
+    tipsLabel: "Where to start",
+    tips: [
+      {
+        heading: "Written contracts first",
+        body: "Every employee needs a written statement of their main terms from day one. It's a legal requirement, and without it you've got very little to stand on if there's ever a dispute."
+      },
+      {
+        heading: "Get a basic disciplinary process written down",
+        body: "It doesn't need to be long. But you need something to follow. The ACAS Code applies regardless, and ignoring it can increase any tribunal award against you by up to 25%."
+      },
+      {
+        heading: "[NAT TO ADVISE]",
+        body: "One specific thing she consistently sees small businesses get wrong that she'd want them to know here."
+      }
+    ],
+    cta: "Drop your details below. Nat will personally follow up — she's already seen your answers, so she'll know exactly where to start the conversation."
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────
+let cur = 0;
+let picks = Array(Qs.length).fill(null);
+
+// ─────────────────────────────────────────────────────────────────
+// QUIZ
+// ─────────────────────────────────────────────────────────────────
+function startQuiz() {
+  show('s-questions');
+  render(0);
+}
+
+function render(i) {
+  cur = i;
+  const q = Qs[i];
+  const total = Qs.length;
+  const pct = Math.round(((i + 1) / total) * 100);
+
+  document.getElementById('q-label').textContent = `Question ${i + 1}`;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('prog-num').textContent = i + 1;
+  document.getElementById('prog-fill').style.width = pct + '%';
+
+  const box = document.getElementById('q-options');
+  box.innerHTML = '';
+  q.opts.forEach((opt, idx) => {
+    const div = document.createElement('div');
+    div.className = 'option' + (picks[i] === idx ? ' selected' : '');
+    div.innerHTML = `<div class="option-radio"></div><span class="option-label">${opt.label}</span>`;
+    div.addEventListener('click', () => pick(i, idx));
+    box.appendChild(div);
+  });
+
+  document.getElementById('btn-back').style.visibility = i === 0 ? 'hidden' : 'visible';
+  refreshNext();
+}
+
+function pick(qIdx, optIdx) {
+  picks[qIdx] = optIdx;
+  document.querySelectorAll('#q-options .option').forEach((el, i) => {
+    el.classList.toggle('selected', i === optIdx);
+  });
+  refreshNext();
+}
+
+function refreshNext() {
+  const btn = document.getElementById('btn-next');
+  const ready = picks[cur] !== null;
+  btn.classList.toggle('on', ready);
+  btn.textContent = cur === Qs.length - 1 ? 'See my results →' : 'Next →';
+}
+
+function nextQ() {
+  if (picks[cur] === null) return;
+  if (cur < Qs.length - 1) {
+    render(cur + 1);
+  } else {
+    const s = score();
+    const b = bucket(s);
+    showResults(b, s);
+  }
+}
+
+function prevQ() {
+  if (cur > 0) render(cur - 1);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// SCORE
+// ─────────────────────────────────────────────────────────────────
+function score() {
+  return Qs.reduce((sum, q, i) => {
+    return q.scored && picks[i] !== null ? sum + q.opts[picks[i]].score : sum;
+  }, 0);
+}
+
+function bucket(s) {
+  if (s >= 13) return 'green';
+  if (s >= 7)  return 'amber';
+  return 'red';
+}
+
+// ─────────────────────────────────────────────────────────────────
+// RESULTS
+// ─────────────────────────────────────────────────────────────────
+function showResults(b, s) {
+  const r = Results[b];
+
+  document.getElementById('r-hero').className = `results-hero ${r.color}`;
+  document.getElementById('r-score').textContent = s;
+  document.getElementById('r-title').textContent = r.title;
+  document.getElementById('r-intro').textContent = r.intro;
+  document.getElementById('r-tips-label').textContent = r.tipsLabel;
+  document.getElementById('r-cta-text').textContent = r.cta;
+
+  const tipsEl = document.getElementById('r-tips');
+  tipsEl.innerHTML = r.tips.map(t => `
+    <div class="tip-card">
+      <strong>${t.heading}</strong>
+      <div class="tip-card-body">${t.body}</div>
+    </div>
+  `).join('');
+
+  // Pre-populate hidden fields
+  Qs.forEach((q, i) => {
+    const el = document.getElementById(q.field);
+    if (el && picks[i] !== null) el.value = q.opts[picks[i]].label;
+  });
+  document.getElementById('f-bucket').value = b;
+  document.getElementById('f-score').value  = `${s} / 18`;
+
+  show('s-results');
+}
+
+// ─────────────────────────────────────────────────────────────────
+// SUBMIT
+// ─────────────────────────────────────────────────────────────────
+function handleSubmit() {
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const gdpr  = document.getElementById('f-gdpr').checked;
+  const err   = document.getElementById('f-err');
+
+  if (!name || !email || !gdpr) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  const form = document.getElementById('the-form');
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { Accept: 'application/json' }
+  })
+  .catch(() => {})
+  .finally(() => {
+    document.getElementById('cta-form-wrap').style.display = 'none';
+    document.getElementById('cta-sent').style.display = 'block';
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// UTILITY
+// ─────────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

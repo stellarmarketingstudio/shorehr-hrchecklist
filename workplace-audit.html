@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workplace Audit | Shore HR</title>
+  <style>
+    :root {
+      --teal:        #198e93;
+      --teal-dark:   #0f7479;
+      --teal-deep:   #0a4f53;
+      --teal-light:  #43b3b7;
+      --teal-pale:   #e8f3f3;
+      --paper:       #ffffff;
+      --ink:         #0e0e0e;
+      --ink-mid:     rgba(14,14,14,0.62);
+      --ink-mute:    rgba(14,14,14,0.45);
+      --grey:        #e8e8e8;
+      --grey-soft:   #f4f3ef;
+
+      --display: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      --body:    "Avenir Next", "Avenir", "Nunito Sans", "Helvetica Neue", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--body);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: #fff;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--grey);
+    }
+
+    .logo-img {
+      display: block;
+      height: 56px;
+      width: auto;
+    }
+
+    .logo-text-fallback {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      color: var(--teal);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .header-tag {
+      font-family: var(--display);
+      font-size: 11px;
+      color: var(--ink-mid);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTAINER ── */
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 0 0;
+    }
+
+    /* ── SCREENS ── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ── INTRO ── */
+    .intro-hero {
+      background: var(--teal);
+      padding: 56px 32px;
+      color: #fff;
+    }
+
+    .intro-headline {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 56px;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin-bottom: 22px;
+      text-wrap: balance;
+      color: #fff;
+    }
+
+    .intro-sub {
+      font-size: 18px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.92);
+      max-width: 460px;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .btn-start {
+      display: inline-block;
+      background: #fff;
+      color: var(--teal);
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 16px 34px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      letter-spacing: -0.005em;
+    }
+
+    .btn-start:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    }
+
+    /* Nat note */
+    .nat-note {
+      background: var(--grey-soft);
+      padding: 36px 32px;
+    }
+
+    .nat-note-eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--teal);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      border-radius: 999px;
+    }
+
+    .nat-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .nat-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--teal-pale);
+    }
+
+    .nat-note p {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .nat-note .nat-sig {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── QUESTIONS ── */
+    .q-screen-pad {
+      padding: 32px;
+    }
+
+    .progress-wrap {
+      margin-bottom: 32px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--display);
+      margin-bottom: 12px;
+    }
+
+    .progress-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-mute);
+    }
+
+    .progress-count {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .progress-count em {
+      font-style: normal;
+      color: var(--ink-mute);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .progress-bar {
+      height: 3px;
+      background: var(--grey);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--teal);
+      transition: width 0.4s ease;
+    }
+
+    .q-label {
+      display: inline-block;
+      padding: 6px 12px;
+      background: var(--teal);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .q-text {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 28px;
+      text-wrap: balance;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 2px solid var(--grey);
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+      user-select: none;
+    }
+
+    .option:hover {
+      border-color: var(--teal);
+    }
+
+    .option.selected {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .option-radio {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--grey);
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.18s;
+      position: relative;
+      background: #fff;
+    }
+
+    .option:hover .option-radio {
+      border-color: var(--teal);
+    }
+
+    .option.selected .option-radio {
+      border-color: #fff;
+      background: #fff;
+    }
+
+    .option.selected .option-radio::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--teal);
+    }
+
+    .option-label {
+      font-size: 16px;
+      line-height: 1.4;
+      font-weight: 500;
+      font-family: var(--body);
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--ink-mute);
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 14px 0;
+      transition: color 0.15s;
+    }
+
+    .btn-back:hover { color: var(--ink); }
+
+    .btn-next {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 30px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: var(--display);
+      transition: background 0.2s, transform 0.18s;
+      opacity: 0.3;
+      pointer-events: none;
+      letter-spacing: -0.005em;
+    }
+
+    .btn-next.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .btn-next.on:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ── RESULTS ── */
+    .results-hero {
+      padding: 56px 32px;
+      color: #fff;
+    }
+
+    .results-hero.green  { background: var(--teal); }
+    .results-hero.amber  { background: #c98a2b; }
+    .results-hero.red    { background: #a8392c; }
+
+    .result-eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .score-block {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .score-num {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 140px;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      color: #fff;
+    }
+
+    .score-denom {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 28px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      padding-bottom: 14px;
+    }
+
+    .result-h {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 44px;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .result-intro-text {
+      font-size: 17px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.92);
+      max-width: 460px;
+    }
+
+    .accent-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .accent-mark .bar {
+      width: 56px;
+      height: 4px;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .accent-mark .caption {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      font-family: var(--display);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .results-body {
+      padding: 40px 32px 32px;
+    }
+
+    .tips-label {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 22px;
+      text-wrap: balance;
+    }
+
+    .tip-card {
+      padding: 20px 22px;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--teal);
+      background: var(--grey-soft);
+    }
+
+    .tip-card strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .tip-card-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* ── CTA CARD (deep teal, optional form) ── */
+    .cta-card {
+      background: var(--teal-deep);
+      color: #fff;
+      padding: 40px 32px;
+      margin-top: 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .cta-nat {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .cta-nat-text {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .cta-nat-text small {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .cta-p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
+    /* Form inside dark CTA card */
+    .cta-form { margin-top: 4px; }
+
+    .cta-form .field-group { margin-bottom: 16px; }
+
+    .cta-form .field-label {
+      display: block;
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 7px;
+    }
+
+    .cta-form .field-optional {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .cta-form .field-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid rgba(255,255,255,0.2);
+      font-size: 15px;
+      font-family: var(--body);
+      color: var(--ink);
+      background: #fff;
+      transition: border-color 0.18s;
+      outline: none;
+    }
+
+    .cta-form .field-input:focus { border-color: var(--teal-light); }
+
+    .cta-form .gdpr-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(255,255,255,0.1);
+      padding: 14px 16px;
+      margin: 20px 0 0;
+      border-left: 4px solid rgba(255,255,255,0.3);
+    }
+
+    .cta-form .gdpr-box input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--teal-light);
+      cursor: pointer;
+    }
+
+    .cta-form .gdpr-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    .cta-form .gdpr-label a { color: #fff; font-weight: 700; }
+
+    .cta-form .err {
+      font-size: 13px;
+      color: #ffaaaa;
+      margin-top: 10px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .cta-form .btn-submit {
+      width: 100%;
+      background: #fff;
+      color: var(--teal-deep);
+      border: none;
+      border-radius: 999px;
+      padding: 17px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: var(--display);
+      margin-top: 20px;
+      transition: background 0.2s, transform 0.18s;
+      letter-spacing: -0.005em;
+    }
+
+    .cta-form .btn-submit:hover {
+      background: var(--grey-soft);
+      transform: translateY(-1px);
+    }
+
+    .form-sent {
+      text-align: center;
+      padding: 20px 0 8px;
+    }
+
+    .form-sent p {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .form-sent .sent-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+      font-family: var(--body);
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+
+    /* ── FOOTER ── */
+    .tool-footer {
+      padding: 32px;
+      font-family: var(--display);
+      font-size: 12px;
+      color: var(--ink-mute);
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-top: 1px solid var(--grey);
+    }
+
+    .tool-footer a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--grey);
+    }
+
+    .tool-footer a:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .site-header { padding: 14px 20px; }
+      .logo-img { height: 44px; }
+      .header-tag { display: none; }
+
+      .intro-hero,
+      .results-hero { padding: 44px 24px; }
+      .q-screen-pad,
+      .results-body,
+      .nat-note { padding: 28px 24px; }
+      .cta-card { padding: 32px 24px; }
+      .tool-footer { padding: 28px 24px; }
+
+      .intro-headline { font-size: 42px; }
+      .q-text { font-size: 26px; }
+      .result-h { font-size: 34px; }
+      .score-num { font-size: 110px; }
+      .tips-label { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://www.shorehr.co.uk" aria-label="Shore HR">
+    <!-- Replace with: <img src="shore-hr-logo-stacked.png" alt="Shore HR" class="logo-img"> -->
+    <span class="logo-text-fallback">Shore HR</span>
+  </a>
+  <span class="header-tag">Practical, Honest HR Support</span>
+</header>
+
+<div class="wrap">
+
+  <!-- ══════════════════════ INTRO ══════════════════════ -->
+  <div class="screen active" id="s-intro">
+
+    <div class="intro-hero">
+      <h1 class="intro-headline">The Workplace Audit</h1>
+      <p class="intro-sub">7 questions to find out how intentionally your organisation is built — and where the risks are.</p>
+      <button class="btn-start" onclick="startQuiz()">Start the audit →</button>
+    </div>
+
+    <div class="nat-note">
+      <div class="nat-note-eyebrow">A note from Natalie</div>
+      <div class="nat-row">
+        <img
+          src="https://static.wixstatic.com/media/4e7009_d35a2115ddf849b09eee4d510d8e4b0b~mv2.png"
+          alt="Natalie Lakin, Shore HR"
+          class="nat-photo"
+          onerror="this.style.display='none'"
+        >
+        <div>
+          <p>I work with managers and directors who care about getting HR right — not just staying out of trouble. This audit covers the things I look at first: how you hire, how you build a culture people actually stay in, how your managers handle things when they get difficult, and where the current legal changes land for your organisation. When you're done, I'll personally review your answers and follow up if there's anything worth a conversation. No automated emails. Just me.</p>
+          <span class="nat-sig">— Natalie Lakin, Shore HR</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════ QUESTIONS ══════════════════════ -->
+  <div class="screen" id="s-questions">
+    <div class="q-screen-pad">
+
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span class="progress-label" id="prog-label">Question</span>
+          <span class="progress-count"><span id="prog-num">1</span><em> / 7</em></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="q-label" id="q-label">Question 1</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="q-options"></div>
+
+      <div class="nav-row">
+        <button class="btn-back" id="btn-back" onclick="prevQ()">← Back</button>
+        <button class="btn-next" id="btn-next" onclick="nextQ()">Next →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════ RESULTS ══════════════════════ -->
+  <div class="screen" id="s-results">
+
+    <div class="results-hero green" id="r-hero">
+      <div class="result-eyebrow">Your Workplace Audit</div>
+
+      <div class="score-block">
+        <div class="score-num" id="r-score">—</div>
+        <div class="score-denom">/ 18</div>
+      </div>
+
+      <h2 class="result-h" id="r-title"></h2>
+      <p class="result-intro-text" id="r-intro"></p>
+
+      <div class="accent-mark">
+        <div class="bar"></div>
+        <div class="caption">Result reviewed personally by Shore HR</div>
+      </div>
+    </div>
+
+    <div class="results-body">
+      <p class="tips-label" id="r-tips-label">Here's what to know:</p>
+      <div id="r-tips"></div>
+
+      <div class="cta-card">
+        <div class="cta-row">
+          <img
+            src="https://static.wixstatic.com/media/4e7009_d35a2115ddf849b09eee4d510d8e4b0b~mv2.png"
+            alt="Nat"
+            class="cta-nat"
+            onerror="this.style.display='none'"
+          >
+          <div class="cta-nat-text">
+            Want Nat to take a look?
+            <small>Personally, not an automation</small>
+          </div>
+        </div>
+        <p class="cta-p" id="r-cta-text"></p>
+
+        <div id="cta-form-wrap" class="cta-form">
+          <form id="the-form" action="https://formspree.io/f/xvzyzjwn" method="POST">
+
+            <!-- Hidden answer fields — populated when results load -->
+            <input type="hidden" name="Q1_Headcount"              id="lq1">
+            <input type="hidden" name="Q2_Recruitment"            id="lq2">
+            <input type="hidden" name="Q3_Culture_building"       id="lq3">
+            <input type="hidden" name="Q4_Manager_behaviour"      id="lq4">
+            <input type="hidden" name="Q5_Retention"              id="lq5">
+            <input type="hidden" name="Q6_Sexual_harassment_duty" id="lq6">
+            <input type="hidden" name="Q7_Trade_union_changes"    id="lq7">
+            <input type="hidden" name="Result_bucket"             id="f-bucket">
+            <input type="hidden" name="Score"                     id="f-score">
+
+            <div class="field-group">
+              <label class="field-label" for="f-name">Your first name</label>
+              <input type="text" id="f-name" name="name" class="field-input" placeholder="e.g. James" required>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="f-email">Work email address</label>
+              <input type="email" id="f-email" name="email" class="field-input" placeholder="james@yourorganisation.co.uk" required>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="f-org">
+                Organisation name <span class="field-optional">(optional)</span>
+              </label>
+              <input type="text" id="f-org" name="organisation_name" class="field-input" placeholder="Your organisation">
+            </div>
+
+            <div class="gdpr-box">
+              <input type="checkbox" id="f-gdpr" name="gdpr_consent" value="yes" required>
+              <label class="gdpr-label" for="f-gdpr">
+                I'm happy for Shore HR to contact me about my results. I understand my information will be handled in line with the <a href="#" target="_blank">privacy policy</a>.
+              </label>
+            </div>
+
+            <p class="err" id="f-err">Please fill in your name and email address, and tick the consent box to continue.</p>
+
+            <button type="button" class="btn-submit" onclick="handleSubmit()">Send my results to Nat →</button>
+
+          </form>
+        </div>
+
+        <div id="cta-sent" style="display:none;" class="form-sent">
+          <p>Done — Nat will be in touch.</p>
+          <p class="sent-sub">She'll have your results in front of her when she reaches out, so no need to explain everything from scratch.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tool-footer">
+      <a href="https://www.shorehr.co.uk">Shore HR</a> · <a href="#">Privacy Policy</a><br>
+      Shore HR Limited · Driffield, East Yorkshire
+    </div>
+
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+// ─────────────────────────────────────────────────────────────────
+// QUESTIONS
+// ─────────────────────────────────────────────────────────────────
+const Qs = [
+  {
+    text: "How many people work in your organisation?",
+    scored: false,
+    field: "lq1",
+    opts: [
+      { label: "Under 10", score: 0 },
+      { label: "10 to 49", score: 0 },
+      { label: "50 to 149", score: 0 },
+      { label: "150 or more", score: 0 }
+    ]
+  },
+  {
+    text: "When you're hiring, do you have a clear sense of what kind of person thrives in your organisation — and does your recruitment process reflect that?",
+    scored: true,
+    field: "lq2",
+    opts: [
+      { label: "Yes, it's something we're deliberate about", score: 3 },
+      { label: "We have a sense of it but the process isn't really built around it", score: 2 },
+      { label: "Mostly we hire for skills and hope for the best", score: 1 },
+      { label: "Recruitment is a bit ad hoc if I'm honest", score: 0 }
+    ]
+  },
+  {
+    text: "Beyond avoiding problems, does your organisation have a deliberate plan for creating a workplace people actually want to stay in?",
+    scored: true,
+    field: "lq3",
+    opts: [
+      { label: "Yes, it's something we actively work on", score: 3 },
+      { label: "We think about it but it's not really structured", score: 2 },
+      { label: "Mostly we focus on the day-to-day and hope people are happy", score: 1 },
+      { label: "Honestly, we're more reactive than we should be", score: 0 }
+    ]
+  },
+  {
+    text: "When a performance or behaviour issue arises in your organisation, do your managers typically address it promptly — or does it tend to get avoided until it becomes a bigger problem?",
+    scored: true,
+    field: "lq4",
+    opts: [
+      { label: "They address things promptly as a rule", score: 3 },
+      { label: "It varies — some managers are better than others", score: 2 },
+      { label: "Issues tend to get avoided until they escalate", score: 1 },
+      { label: "We don't have a consistent approach", score: 0 }
+    ]
+  },
+  {
+    text: "Do you have a clear picture of why people leave your organisation — and just as importantly, why people stay?",
+    scored: true,
+    field: "lq5",
+    opts: [
+      { label: "Yes, we have good insight into both", score: 3 },
+      { label: "We have a rough idea but it's more gut feel than data", score: 2 },
+      { label: "We track leavers but haven't thought much about why people stay", score: 1 },
+      { label: "Not really — people leave and we move on", score: 0 }
+    ]
+  },
+  {
+    text: "Since October 2024, employers have a legal duty to proactively prevent sexual harassment at work — not just respond when something happens. Are you confident your organisation is meeting that duty?",
+    scored: true,
+    field: "lq6",
+    opts: [
+      { label: "Yes, we have steps in place", score: 3 },
+      { label: "We've looked at it but I'm not fully confident", score: 2 },
+      { label: "Not yet — this needs attention", score: 1 },
+      { label: "I wasn't aware this was a legal duty", score: 0 }
+    ]
+  },
+  {
+    text: "From October 2026, employers will have a new duty to inform workers of their right to join a trade union — and union reps will gain new rights to workplace access and facilities. How prepared does your organisation feel for these changes?",
+    scored: true,
+    field: "lq7",
+    opts: [
+      { label: "We're across it and already thinking about it", score: 3 },
+      { label: "We're aware but haven't done anything yet", score: 2 },
+      { label: "We'd heard something about this but don't have the detail", score: 1 },
+      { label: "This is the first I've heard of it", score: 0 }
+    ]
+  }
+];
+
+// ─────────────────────────────────────────────────────────────────
+// RESULTS COPY
+// ─────────────────────────────────────────────────────────────────
+const Results = {
+  green: {
+    color: "green",
+    title: "Your workplace is working for you",
+    intro: "The audit confirms what your answers suggest — you're thinking about your workplace deliberately, not just reacting to things when they go wrong. That's not as common as you'd think.",
+    tipsLabel: "A couple of things worth staying across:",
+    tips: [
+      {
+        heading: "October 2026 trade union changes are closer than they look",
+        body: "The new duty to inform workers of their right to join a trade union comes in October 2026, along with new rights to workplace access for union reps and time off for union equality representatives. Most organisations haven't started thinking about this yet. The practical ask is manageable — but working out what you need to do in advance is much easier than scrambling once it's already in force."
+      },
+      {
+        heading: "Culture and compliance drift apart during busy periods",
+        body: "Even organisations with solid foundations tend to let things slip when the pressure's on. A review every 6-12 months — recruitment process, how managers are handling things, what your retention data is actually telling you — keeps everything honest and means you're not surprised by something you could have spotted earlier."
+      }
+    ],
+    cta: "Nat will personally follow up — mostly to share a few things worth staying across even when you're in good shape. No obligation. Just a quick conversation."
+  },
+  amber: {
+    color: "amber",
+    title: "A few things worth building on",
+    intro: "There's a solid base here — but the audit has flagged some areas where you're running on instinct rather than intention. The kind of things that don't cause problems right away, but tend to when the pressure's on.",
+    tipsLabel: "Here's what to know:",
+    tips: [
+      {
+        heading: "Manager avoidance is where most employment disputes start",
+        body: "If issues tend to get left until they escalate, that's worth addressing. Not because it reflects badly on your managers — most people find difficult conversations uncomfortable — but because by the time something reaches a formal stage, the options are much narrower. Early conversations with a bit of structure behind them make a significant difference, and they're easier to support than most managers expect."
+      },
+      {
+        heading: "The sexual harassment positive duty changed the rules in October 2024",
+        body: "Having a harassment policy and meeting the legal duty are two different things. The duty requires proactive steps — risk assessments, training, a visible commitment from leadership, and a clear route for people to raise concerns. A tribunal can uplift any sexual harassment compensation by up to 25% if the employer hasn't taken reasonable steps. Worth checking what's actually in place."
+      },
+      {
+        heading: "October 2026 trade union changes — good time to get ahead",
+        body: "From October 2026, employers have a new duty to actively notify workers of their right to join a trade union, with new rights for union reps to access the workplace and facilities. For most organisations it's manageable — but it needs a plan, not a last-minute scramble. Getting clarity on what it means for your organisation now means you're prepared, not reactive."
+      }
+    ],
+    cta: "Nat will be in touch to talk through what the audit flagged specifically — no obligation, just a practical conversation about where to start."
+  },
+  red: {
+    color: "red",
+    title: "Time to have a proper conversation",
+    intro: "The audit has flagged some things that need attention — on both the culture side and the compliance side. Most of this isn't complicated to sort. But it does need to be sorted. Better now than when something's already gone wrong.",
+    tipsLabel: "Where to start:",
+    tips: [
+      {
+        heading: "The Employment Rights Act changes are already live",
+        body: "Day-one unfair dismissal rights are now in force. That doesn't mean you can never let someone go in their first two years — but it does mean the process matters from day one, not just after a qualifying period. Without a clear approach from the start, even straightforward exits carry more risk than they used to. This is the thing most managers don't realise has already changed."
+      },
+      {
+        heading: "The sexual harassment duty isn't satisfied by a policy",
+        body: "The October 2024 positive duty requires proactive steps — not a document in a drawer. Risk assessment, training, leadership commitment, and a clear route for raising concerns. A tribunal can uplift any sexual harassment compensation by up to 25% where the employer hasn't taken reasonable preventive steps. It's worth knowing exactly what's in place and what isn't."
+      },
+      {
+        heading: "October 2026 trade union changes — don't let this catch you cold",
+        body: "From October 2026, employers must proactively inform workers of their right to join a trade union. Union reps also gain new rights to workplace access, facilities, and time off. If you're not across what's changing, now's the time to get a clear picture of what it means for your organisation before it's already in force."
+      }
+    ],
+    cta: "Nat will personally follow up — she's already reviewed your answers, so the conversation can be specific to what your organisation actually needs."
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────
+let cur = 0;
+let picks = Array(Qs.length).fill(null);
+
+// ─────────────────────────────────────────────────────────────────
+// QUIZ
+// ─────────────────────────────────────────────────────────────────
+function startQuiz() {
+  show('s-questions');
+  render(0);
+}
+
+function render(i) {
+  cur = i;
+  const q = Qs[i];
+  const total = Qs.length;
+  const pct = Math.round(((i + 1) / total) * 100);
+
+  document.getElementById('q-label').textContent = `Question ${i + 1}`;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('prog-num').textContent = i + 1;
+  document.getElementById('prog-fill').style.width = pct + '%';
+
+  const box = document.getElementById('q-options');
+  box.innerHTML = '';
+  q.opts.forEach((opt, idx) => {
+    const div = document.createElement('div');
+    div.className = 'option' + (picks[i] === idx ? ' selected' : '');
+    div.innerHTML = `<div class="option-radio"></div><span class="option-label">${opt.label}</span>`;
+    div.addEventListener('click', () => pick(i, idx));
+    box.appendChild(div);
+  });
+
+  document.getElementById('btn-back').style.visibility = i === 0 ? 'hidden' : 'visible';
+  refreshNext();
+}
+
+function pick(qIdx, optIdx) {
+  picks[qIdx] = optIdx;
+  document.querySelectorAll('#q-options .option').forEach((el, i) => {
+    el.classList.toggle('selected', i === optIdx);
+  });
+  refreshNext();
+}
+
+function refreshNext() {
+  const btn = document.getElementById('btn-next');
+  const ready = picks[cur] !== null;
+  btn.classList.toggle('on', ready);
+  btn.textContent = cur === Qs.length - 1 ? 'See my results →' : 'Next →';
+}
+
+function nextQ() {
+  if (picks[cur] === null) return;
+  if (cur < Qs.length - 1) {
+    render(cur + 1);
+  } else {
+    const s = score();
+    const b = bucket(s);
+    showResults(b, s);
+  }
+}
+
+function prevQ() {
+  if (cur > 0) render(cur - 1);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// SCORE
+// ─────────────────────────────────────────────────────────────────
+function score() {
+  return Qs.reduce((sum, q, i) => {
+    return q.scored && picks[i] !== null ? sum + q.opts[picks[i]].score : sum;
+  }, 0);
+}
+
+function bucket(s) {
+  if (s >= 13) return 'green';
+  if (s >= 7)  return 'amber';
+  return 'red';
+}
+
+// ─────────────────────────────────────────────────────────────────
+// RESULTS
+// ─────────────────────────────────────────────────────────────────
+function showResults(b, s) {
+  const r = Results[b];
+
+  document.getElementById('r-hero').className = `results-hero ${r.color}`;
+  document.getElementById('r-score').textContent = s;
+  document.getElementById('r-title').textContent = r.title;
+  document.getElementById('r-intro').textContent = r.intro;
+  document.getElementById('r-tips-label').textContent = r.tipsLabel;
+  document.getElementById('r-cta-text').textContent = r.cta;
+
+  const tipsEl = document.getElementById('r-tips');
+  tipsEl.innerHTML = r.tips.map(t => `
+    <div class="tip-card">
+      <strong>${t.heading}</strong>
+      <div class="tip-card-body">${t.body}</div>
+    </div>
+  `).join('');
+
+  // Pre-populate hidden fields
+  Qs.forEach((q, i) => {
+    const el = document.getElementById(q.field);
+    if (el && picks[i] !== null) el.value = q.opts[picks[i]].label;
+  });
+  document.getElementById('f-bucket').value = b;
+  document.getElementById('f-score').value  = `${s} / 18`;
+
+  show('s-results');
+}
+
+// ─────────────────────────────────────────────────────────────────
+// SUBMIT
+// ─────────────────────────────────────────────────────────────────
+function handleSubmit() {
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const gdpr  = document.getElementById('f-gdpr').checked;
+  const err   = document.getElementById('f-err');
+
+  if (!name || !email || !gdpr) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  const form = document.getElementById('the-form');
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { Accept: 'application/json' }
+  })
+  .catch(() => {})
+  .finally(() => {
+    document.getElementById('cta-form-wrap').style.display = 'none';
+    document.getElementById('cta-sent').style.display = 'block';
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// UTILITY
+// ─────────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
