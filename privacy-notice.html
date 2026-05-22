@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Notice | Shore HR Diagnostic Tools</title>
+  <style>
+    :root {
+      --teal:        #198e93;
+      --teal-dark:   #0f7479;
+      --teal-deep:   #0a4f53;
+      --paper:       #ffffff;
+      --ink:         #0e0e0e;
+      --ink-mid:     rgba(14,14,14,0.62);
+      --ink-mute:    rgba(14,14,14,0.45);
+      --grey:        #e8e8e8;
+      --grey-soft:   #f4f3ef;
+      --display: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      --body:    "Avenir Next", "Avenir", "Nunito Sans", "Helvetica Neue", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--body);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: #fff;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--grey);
+    }
+
+    .logo-img { display: block; height: 56px; width: auto; }
+
+    .header-tag {
+      font-family: var(--display);
+      font-size: 11px;
+      color: var(--ink-mid);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ── HERO ── */
+    .notice-hero {
+      background: var(--teal);
+      padding: 52px 32px;
+      color: #fff;
+    }
+
+    .notice-eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .notice-hero h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 1.0;
+      letter-spacing: -0.035em;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .notice-hero p {
+      font-size: 17px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.92);
+      max-width: 520px;
+    }
+
+    /* ── BODY ── */
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .notice-body { padding: 44px 32px 16px; }
+
+    .updated {
+      font-family: var(--display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 32px;
+    }
+
+    .notice-body h2 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 34px 0 12px;
+    }
+
+    .notice-body h2:first-of-type { margin-top: 0; }
+
+    .notice-body p {
+      font-size: 16px;
+      line-height: 1.62;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .notice-body ul {
+      margin: 4px 0 14px;
+      padding-left: 22px;
+    }
+
+    .notice-body li {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .notice-body a { color: var(--teal-dark); font-weight: 700; }
+
+    /* placeholder + note styling */
+    .ph {
+      background: #fff3cd;
+      border-bottom: 2px solid #e0a800;
+      padding: 1px 5px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .note {
+      background: var(--grey-soft);
+      border-left: 4px solid var(--teal);
+      padding: 16px 20px;
+      margin: 16px 0 20px;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink-mid);
+    }
+
+    .note strong { color: var(--ink); }
+
+    /* ── FOOTER ── */
+    .tool-footer {
+      padding: 32px;
+      font-family: var(--display);
+      font-size: 12px;
+      color: var(--ink-mute);
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-top: 1px solid var(--grey);
+      margin-top: 28px;
+    }
+
+    .tool-footer a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--grey);
+    }
+
+    .tool-footer a:hover { border-color: var(--teal); color: var(--teal); }
+
+    @media (max-width: 520px) {
+      .site-header { padding: 14px 20px; }
+      .logo-img { height: 44px; }
+      .header-tag { display: none; }
+      .notice-hero { padding: 40px 24px; }
+      .notice-hero h1 { font-size: 36px; }
+      .notice-body { padding: 32px 24px 12px; }
+      .tool-footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://www.shorehr.co.uk" aria-label="Shore HR">
+    <img src="shore-hr-logo.png" alt="Shore HR" class="logo-img"
+         onerror="this.outerHTML='<span style=&quot;font-family:var(--display);font-weight:800;letter-spacing:0.12em;color:#198e93&quot;>SHORE HR</span>'">
+  </a>
+  <span class="header-tag">Practical, Honest HR Support</span>
+</header>
+
+<div class="notice-hero">
+  <div class="wrap">
+    <div class="notice-eyebrow">Privacy Notice</div>
+    <h1>Your information, and what we do with it</h1>
+    <p>This notice covers the HR Health Check and the Workplace Audit. If you use either tool and send us your results, here is exactly what happens to your details. No surprises.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="notice-body">
+
+    <p class="updated">Last updated: 22 May 2026</p>
+
+    <h2>Who we are</h2>
+    <p>We are Shore HR Limited, <span class="ph">[PLACEHOLDER: full registered address]</span>, registered in England and Wales, company number <span class="ph">[PLACEHOLDER: company number]</span>. We are the data controller for the information you give us through these tools.</p>
+    <p>We are registered with the Information Commissioner's Office (ICO), registration number <span class="ph">[PLACEHOLDER: ICO registration number]</span>.</p>
+    <p>If you have any questions about this notice or your information, email us at <a href="mailto:hello@shorehr.co.uk">hello@shorehr.co.uk</a>.</p>
+
+    <h2>What this notice covers</h2>
+    <p>This notice covers two online tools: the HR Health Check and the Workplace Audit. It explains what happens if you fill in the short form at the end of either one. It does not cover the main Shore HR website, which has its own privacy policy.</p>
+
+    <h2>You can use the tools without giving us anything</h2>
+    <p>You can answer the questions and see your full results without giving us any personal information at all. We only receive your details if you choose to fill in the optional form at the end and submit it.</p>
+
+    <h2>What we collect</h2>
+    <p>If you submit the form, we collect:</p>
+    <ul>
+      <li>your first name</li>
+      <li>your email address</li>
+      <li>your business or organisation name (optional)</li>
+      <li>your answers to the seven questions, your score, and your result (Green, Amber or Red)</li>
+    </ul>
+
+    <h2>Why we collect it, and our lawful basis</h2>
+    <p>We use your information for two things, and both rely on your consent:</p>
+    <ul>
+      <li><strong>To review your answers and follow up.</strong> Natalie looks at your answers personally and gets in touch about your results. This is the consent you give when you tick the box to submit the form.</li>
+      <li><strong>To keep in touch.</strong> If you give separate permission, we may send you occasional HR tips and updates we think you will find useful.</li>
+    </ul>
+    <p>You can withdraw either consent at any time. See "Your rights" below.</p>
+
+    <h2>Who we share it with</h2>
+    <p>Your form submission is delivered to us by Formspree, the service that handles the form. Formspree acts as our data processor and is based in the United States, so your information is transferred outside the UK. That transfer is covered by appropriate safeguards. <span class="ph">[PLACEHOLDER: Natalie to confirm Formspree's data processing terms / Standard Contractual Clauses are in place]</span></p>
+    <p>If we send you "keep in touch" emails, we may use an email service to do that: <span class="ph">[PLACEHOLDER: name your email tool, or remove this line if you do not use one]</span>.</p>
+    <p>We do not sell your information, and we do not share it with anyone else for their own marketing.</p>
+
+    <h2>How long we keep it</h2>
+    <p>We keep your information until you ask us to remove it. When you ask, we delete it, unless we have to keep something to meet a legal obligation. If you go on to become a Shore HR client, your information will then be handled under our client terms.</p>
+
+    <h2>Cookies</h2>
+    <p>These tools do not use cookies or any tracking. Nothing is stored on your device.</p>
+
+    <h2>Your rights</h2>
+    <p>Under UK data protection law you have the right to ask for a copy of the information we hold about you, to ask us to correct it, to ask us to delete it, to ask us to restrict or stop how we use it, to object to how we use it, to ask us to transfer it, and to withdraw your consent at any time. Withdrawing consent does not affect anything we did before you withdrew it.</p>
+    <p>To do any of these, email us at <a href="mailto:hello@shorehr.co.uk">hello@shorehr.co.uk</a>. We will respond within one month.</p>
+    <p>Every "keep in touch" email also has an unsubscribe link, so you can stop those at any time in one click.</p>
+    <p>If you are not happy with how we have handled your information, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk" target="_blank">ico.org.uk</a>.</p>
+
+    <h2>Changes to this notice</h2>
+    <p>We may update this notice from time to time. If we do, we will change the "last updated" date at the top of this page.</p>
+
+  </div>
+
+  <div class="tool-footer">
+    <a href="https://www.shorehr.co.uk">Shore HR</a><br>
+    Shore HR Limited &middot; Driffield, East Yorkshire
+  </div>
+
+</div>
+
+</body>
+</html>

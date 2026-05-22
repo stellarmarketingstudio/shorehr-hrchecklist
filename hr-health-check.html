@@ -167,6 +167,8 @@
       font-weight: 400;
     }
 
+    .nat-note p + p { margin-top: 12px; }
+
     .nat-note .nat-sig {
       display: block;
       margin-top: 10px;
@@ -468,6 +470,18 @@
       text-wrap: balance;
     }
 
+    .flagged {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-mid);
+      background: var(--grey-soft);
+      border-left: 4px solid var(--teal);
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+
+    .flagged strong { color: var(--ink); font-weight: 700; }
+
     .tip-card {
       padding: 20px 22px;
       margin-bottom: 10px;
@@ -514,6 +528,19 @@
       object-fit: cover;
       background: var(--teal);
       flex-shrink: 0;
+    }
+
+    .img-ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--teal-pale);
+      color: var(--teal);
+      font-family: var(--display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .cta-nat-text {
@@ -584,6 +611,11 @@
       padding: 14px 16px;
       margin: 20px 0 0;
       border-left: 4px solid rgba(255,255,255,0.3);
+    }
+
+    .cta-form .opt-box {
+      margin-top: 10px;
+      border-left-color: rgba(255,255,255,0.15);
     }
 
     .cta-form .gdpr-box input[type="checkbox"] {
@@ -701,7 +733,7 @@
 
 <header class="site-header">
   <a href="https://www.shorehr.co.uk" aria-label="Shore HR">
-    <img src="shore-hr-logo.png" alt="Shore HR" class="logo-img">
+    <img src="shore-hr-logo.png" alt="Shore HR" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-text-fallback&quot;>SHORE HR</span>'">
   </a>
   <span class="header-tag">Practical, Honest HR Support</span>
 </header>
@@ -713,7 +745,7 @@
 
     <div class="intro-hero">
       <h1 class="intro-headline">Is your HR actually in shape?</h1>
-      <p class="intro-sub">7 quick questions to find out where your business stands — and what, if anything, you need to look at.</p>
+      <p class="intro-sub">7 quick questions to find out where your business stands.</p>
       <button class="btn-start" onclick="startQuiz()">Start the check →</button>
     </div>
 
@@ -724,11 +756,13 @@
           src="nat-shore-hr.jpeg"
           alt="Natalie Lakin, Shore HR"
           class="nat-photo"
-          onerror="this.style.display='none'"
+          onerror="this.outerHTML='<div class=&quot;nat-photo img-ph&quot;>Photo</div>'"
         >
         <div>
-          <p>Most small businesses are better protected than they think — and a few are more exposed than they realise. This check takes about 3 minutes and gives you a straight answer either way. When you're done, I'll personally review your answers and follow up if there's anything worth a conversation.</p>
-          <span class="nat-sig">— Natalie Lakin, Shore HR</span>
+          <p>Hi, I'm Natalie. I've spent 20 years solving HR problems for businesses of every size, from sole traders to companies of a few hundred people. These days I mostly help smaller businesses, the ones who don't have an HR person and don't want the cost of one.</p>
+          <p>No jargon, no sky-high fees, no one-size-fits-all. When you work with me, you get me. Someone who takes the time to understand how your business really works, and gives you advice that holds up in the real world.</p>
+          <p>This check takes about five minutes. Answer 7 questions, get a straight answer, and if you'd like me to look at your results properly and follow up, just leave your details at the end.</p>
+          <span class="nat-sig">Natalie Lakin, Shore HR</span>
         </div>
       </div>
     </div>
@@ -774,28 +808,23 @@
 
       <h2 class="result-h" id="r-title"></h2>
       <p class="result-intro-text" id="r-intro"></p>
-
-      <div class="accent-mark">
-        <div class="bar"></div>
-        <div class="caption">Result reviewed personally by Shore HR</div>
-      </div>
     </div>
 
     <div class="results-body">
-      <p class="tips-label" id="r-tips-label">Here's what to know:</p>
+      <p class="flagged" id="r-flagged"></p>
+      <p class="tips-label" id="r-tips-label">Here's what to know</p>
       <div id="r-tips"></div>
 
       <div class="cta-card">
         <div class="cta-row">
           <img
             src="nat-shore-hr.jpeg"
-            alt="Nat"
+            alt="Natalie"
             class="cta-nat"
-            onerror="this.style.display='none'"
+            onerror="this.outerHTML='<div class=&quot;cta-nat img-ph&quot;>Photo</div>'"
           >
           <div class="cta-nat-text">
-            Want Nat to take a look?
-            <small>Personally, not an automation</small>
+            Want me to take a look?
           </div>
         </div>
         <p class="cta-p" id="r-cta-text"></p>
@@ -825,36 +854,41 @@
             </div>
 
             <div class="field-group">
-              <label class="field-label" for="f-biz">
-                Business name <span class="field-optional">(optional)</span>
-              </label>
-              <input type="text" id="f-biz" name="business_name" class="field-input" placeholder="Your business">
+              <label class="field-label" for="f-biz">Business name</label>
+              <input type="text" id="f-biz" name="business_name" class="field-input" placeholder="Your business" required>
             </div>
 
             <div class="gdpr-box">
               <input type="checkbox" id="f-gdpr" name="gdpr_consent" value="yes" required>
               <label class="gdpr-label" for="f-gdpr">
-                I'm happy for Shore HR to contact me about my results. I understand my information will be handled in line with the <a href="#" target="_blank">privacy policy</a>.
+                I'm happy for Shore HR to contact me about my results. I understand my information will be handled in line with the <a href="privacy-notice.html" target="_blank">privacy notice</a>.
               </label>
             </div>
 
-            <p class="err" id="f-err">Please fill in your name and email address, and tick the consent box to continue.</p>
+            <div class="gdpr-box opt-box">
+              <input type="checkbox" id="f-marketing" name="marketing_consent" value="yes">
+              <label class="gdpr-label" for="f-marketing">
+                I'd also like the occasional HR tip or update from Shore HR. Optional, and you can unsubscribe any time.
+              </label>
+            </div>
 
-            <button type="button" class="btn-submit" onclick="handleSubmit()">Send my results to Nat →</button>
+            <p class="err" id="f-err">Please fill in your name, email address and business name, and tick the consent box to continue.</p>
+
+            <button type="button" class="btn-submit" onclick="handleSubmit()">Send my results to Natalie →</button>
 
           </form>
         </div>
 
         <div id="cta-sent" style="display:none;" class="form-sent">
-          <p>Done — Nat will be in touch.</p>
-          <p class="sent-sub">She'll have your results in front of her, so no need to explain everything from scratch.</p>
+          <p>Done. I'll be in touch.</p>
+          <p class="sent-sub">I'll have your results in front of me, so no need to explain everything from scratch.</p>
         </div>
 
       </div>
     </div>
 
     <div class="tool-footer">
-      <a href="https://www.shorehr.co.uk">Shore HR</a> · <a href="#">Privacy Policy</a><br>
+      <a href="https://www.shorehr.co.uk">Shore HR</a> · <a href="privacy-notice.html">Privacy Notice</a><br>
       Shore HR Limited · Driffield, East Yorkshire
     </div>
 
@@ -872,7 +906,7 @@ const Qs = [
     scored: false,
     field: "fq1",
     opts: [
-      { label: "Just me — sole trader", score: 0 },
+      { label: "Just me, sole trader", score: 0 },
       { label: "2 to 5 people", score: 0 },
       { label: "6 to 15 people", score: 0 },
       { label: "More than 15", score: 0 }
@@ -882,6 +916,7 @@ const Qs = [
     text: "Do your employees have a written contract or written statement of terms?",
     scored: true,
     field: "fq2",
+    topic: "written contracts",
     opts: [
       { label: "Yes, everyone has one", score: 3 },
       { label: "Most do, but not all", score: 2 },
@@ -890,13 +925,14 @@ const Qs = [
     ]
   },
   {
-    text: "When someone joins your team, do you check they're legally allowed to work in the UK — and keep a record of it?",
+    text: "When someone joins your team, do you check they're legally allowed to work in the UK, and keep a record of it?",
     scored: true,
     field: "fq3",
+    topic: "right to work checks",
     opts: [
-      { label: "Yes, every time — and I keep the records", score: 3 },
+      { label: "Yes, every time, and I keep the records", score: 3 },
       { label: "Yes, but I'm not consistent with the record-keeping", score: 2 },
-      { label: "Sometimes — no consistent process", score: 1 },
+      { label: "Sometimes, no consistent process", score: 1 },
       { label: "No, I didn't know I needed to", score: 0 }
     ]
   },
@@ -904,21 +940,23 @@ const Qs = [
     text: "Are you confident everyone you employ is being paid at least the National Living Wage?",
     scored: true,
     field: "fq4",
+    topic: "the National Living Wage",
     opts: [
       { label: "Yes, definitely", score: 3 },
-      { label: "Mostly — but I haven't checked the rates recently", score: 2 },
+      { label: "Mostly, but I haven't checked the rates recently", score: 2 },
       { label: "I'm not sure if we're keeping up", score: 1 },
       { label: "Honestly, I don't know", score: 0 }
     ]
   },
   {
-    text: "If you had a problem with an employee's behaviour — or they had a complaint about work — would you know what steps to follow?",
+    text: "If you had a problem with an employee's behaviour, or they had a complaint about work, would you know what steps to follow?",
     scored: true,
     field: "fq5",
+    topic: "handling a disciplinary or grievance",
     opts: [
       { label: "Yes, I have a process and I'm confident in it", score: 3 },
       { label: "I'd figure it out, but it's not written down anywhere", score: 2 },
-      { label: "I'd struggle — I wouldn't really know where to start", score: 1 },
+      { label: "I'd struggle, I wouldn't really know where to start", score: 1 },
       { label: "No process at all", score: 0 }
     ]
   },
@@ -926,10 +964,11 @@ const Qs = [
     text: "When an employee is off sick, do you have a clear way of handling it?",
     scored: true,
     field: "fq6",
+    topic: "managing sickness absence",
     opts: [
-      { label: "Yes, clear process — I know what to do and when", score: 3 },
-      { label: "Sort of — I manage it but it's a bit ad hoc", score: 2 },
-      { label: "Not really — I deal with it case by case", score: 1 },
+      { label: "Yes, clear process, I know what to do and when", score: 3 },
+      { label: "Sort of, I manage it but it's a bit ad hoc", score: 2 },
+      { label: "Not really, I deal with it case by case", score: 1 },
       { label: "No clear process at all", score: 0 }
     ]
   },
@@ -937,10 +976,11 @@ const Qs = [
     text: "If you had to let someone go tomorrow, how confident are you that you'd handle it the right way?",
     scored: true,
     field: "fq7",
+    topic: "handling a dismissal",
     opts: [
-      { label: "Very confident — I know the process", score: 3 },
-      { label: "Fairly confident — I think I know what to do", score: 2 },
-      { label: "Not very confident — I'd be guessing", score: 1 },
+      { label: "Very confident, I know the process", score: 3 },
+      { label: "Fairly confident, I think I know what to do", score: 2 },
+      { label: "Not very confident, I'd be guessing", score: 1 },
       { label: "I wouldn't know where to start", score: 0 }
     ]
   }
@@ -952,46 +992,46 @@ const Qs = [
 const Results = {
   green: {
     color: "green",
-    title: "You're in pretty good shape.",
-    intro: "Right, you're in better shape than a lot of small businesses. You've got the basics covered.",
-    tipsLabel: "One thing to keep in mind",
+    title: "You're in pretty good shape",
+    intro: "Right, you're in better shape than a lot of small businesses. The basics are covered, and that already puts you ahead of plenty of businesses your size. The job now is keeping it that way.",
+    tipsLabel: "A couple of things worth keeping in mind",
     tips: [
       {
         heading: "Keep it current",
-        body: "Employment law moves faster than most people realise. Give it a check every so often — written terms in particular. The rules changed in 2020 and plenty of employers are still doing it the old way."
+        body: "Employment law moves faster than most people realise. Give it a check every so often, written terms especially. The rules changed in 2020 and plenty of employers are still doing it the old way."
       },
       {
-        heading: "[NAT TO ADVISE]",
-        body: "What's the one thing you'd say to a client who's in good shape but you don't want to leave empty-handed? Something specific you find yourself telling people who think they're sorted."
+        heading: "Check your contracts still match real life",
+        body: "Most small businesses write a contract when someone joins, then never look at it again. But roles move. Someone picks up extra responsibility, hours change, the job quietly becomes a different job. When the contract no longer matches what someone actually does, that gap is where disagreements start. Worth a proper read-through once a year."
       }
     ],
-    cta: "Drop your details below and Nat will personally follow up with a few things worth keeping an eye on — even when you're in good shape."
+    cta: "Enter your details below and I'll be in touch to discuss your answers."
   },
   amber: {
     color: "amber",
-    title: "There are a few gaps worth looking at.",
-    intro: "You're not in a bad position, but the audit has flagged a few things worth sorting before something goes wrong. The gaps that catch employers out are usually the ones they didn't know were there.",
+    title: "There are a few gaps worth looking at",
+    intro: "You've got some of this in place, but the check has flagged real gaps too, the kind worth sorting before something goes wrong. And the ones that catch employers out are usually the ones they didn't know were there.",
     tipsLabel: "Here's what to know",
     tips: [
       {
         heading: "The ACAS Code applies whether you know about it or not",
-        body: "Even if you don't have a formal policy, you're still expected to follow it. Ignore it and end up at tribunal, and the award against you can go up by 25%."
+        body: "Even if you don't have a formal policy, you're still expected to follow it. Ignore it, end up at tribunal, and the award against you can go up by 25%."
       },
       {
         heading: "Probation periods don't give you a free pass",
-        body: "Most business owners assume they do. They don't. And this has become more important with recent employment law changes."
+        body: "Most business owners assume a probation period means employment rights don't really apply yet. It doesn't work like that. Plenty of rights apply from day one, whatever stage someone is at. And from January 2027 the qualifying period for unfair dismissal claims drops to six months, so those first few months matter more than they used to."
       },
       {
         heading: "Written terms have to be given on day one",
         body: "Not after a couple of months like it used to be. Still doing it the old way? Easy fix."
       }
     ],
-    cta: "Drop your details below and Nat will be in touch to talk through the specific gaps your answers flagged. No hard sell — just a practical conversation about what's worth sorting first."
+    cta: "Enter your details below and I'll be in touch to discuss your answers."
   },
   red: {
     color: "red",
-    title: "There are some things that need sorting.",
-    intro: "I'll be straight with you. The audit has flagged some things that need attention. Nothing that can't be fixed. But sort them before something goes wrong.",
+    title: "There are some things that need sorting",
+    intro: "I'll be straight with you. The check has flagged some things that need attention. Nothing that can't be fixed. But sort them before something goes wrong.",
     tipsLabel: "Where to start",
     tips: [
       {
@@ -1003,11 +1043,11 @@ const Results = {
         body: "It doesn't need to be long. But you need something to follow. The ACAS Code applies regardless, and ignoring it can increase any tribunal award against you by up to 25%."
       },
       {
-        heading: "[NAT TO ADVISE]",
-        body: "One specific thing she consistently sees small businesses get wrong that she'd want them to know here."
+        heading: "Check right to work before anyone starts",
+        body: "This is the one that catches people out. Every single person you employ needs a right to work check before their first day, and you need to keep the record. Get it wrong and the fine is up to £45,000 per worker, rising to £60,000 if it happens again. The check takes minutes. It's the cheapest protection you'll ever put in place."
       }
     ],
-    cta: "Drop your details below. Nat will personally follow up — she's already seen your answers, so she'll know exactly where to start the conversation."
+    cta: "Enter your details below and I'll be in touch to discuss your answers."
   }
 };
 
@@ -1108,6 +1148,26 @@ function showResults(b, s) {
   document.getElementById('r-tips-label').textContent = r.tipsLabel;
   document.getElementById('r-cta-text').textContent = r.cta;
 
+  // Reflect the weakest answers back to the reader
+  const weak = Qs
+    .map((q, i) => ({ q, i }))
+    .filter(x => x.q.scored && picks[x.i] !== null && x.q.opts[picks[x.i]].score <= 1)
+    .sort((a, b) => a.q.opts[picks[a.i]].score - b.q.opts[picks[b.i]].score)
+    .map(x => x.q.topic);
+  const flaggedEl = document.getElementById('r-flagged');
+  if (!weak.length) {
+    flaggedEl.style.display = 'none';
+  } else {
+    flaggedEl.style.display = 'block';
+    const list = weak.length === 1
+      ? weak[0]
+      : weak.slice(0, -1).join(', ') + ' and ' + weak[weak.length - 1];
+    const lead = weak.length === 1
+      ? 'From your answers, the main thing to look at is '
+      : 'From your answers, the areas to look at: ';
+    flaggedEl.innerHTML = lead + '<strong>' + list + '</strong>.';
+  }
+
   const tipsEl = document.getElementById('r-tips');
   tipsEl.innerHTML = r.tips.map(t => `
     <div class="tip-card">
@@ -1133,10 +1193,11 @@ function showResults(b, s) {
 function handleSubmit() {
   const name  = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim();
+  const biz   = document.getElementById('f-biz').value.trim();
   const gdpr  = document.getElementById('f-gdpr').checked;
   const err   = document.getElementById('f-err');
 
-  if (!name || !email || !gdpr) {
+  if (!name || !email || !biz || !gdpr) {
     err.style.display = 'block';
     return;
   }

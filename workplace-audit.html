@@ -167,6 +167,8 @@
       font-weight: 400;
     }
 
+    .nat-note p + p { margin-top: 12px; }
+
     .nat-note .nat-sig {
       display: block;
       margin-top: 10px;
@@ -468,6 +470,18 @@
       text-wrap: balance;
     }
 
+    .flagged {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-mid);
+      background: var(--grey-soft);
+      border-left: 4px solid var(--teal);
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+
+    .flagged strong { color: var(--ink); font-weight: 700; }
+
     .tip-card {
       padding: 20px 22px;
       margin-bottom: 10px;
@@ -514,6 +528,19 @@
       object-fit: cover;
       background: var(--teal);
       flex-shrink: 0;
+    }
+
+    .img-ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--teal-pale);
+      color: var(--teal);
+      font-family: var(--display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .cta-nat-text {
@@ -584,6 +611,11 @@
       padding: 14px 16px;
       margin: 20px 0 0;
       border-left: 4px solid rgba(255,255,255,0.3);
+    }
+
+    .cta-form .opt-box {
+      margin-top: 10px;
+      border-left-color: rgba(255,255,255,0.15);
     }
 
     .cta-form .gdpr-box input[type="checkbox"] {
@@ -701,7 +733,7 @@
 
 <header class="site-header">
   <a href="https://www.shorehr.co.uk" aria-label="Shore HR">
-    <img src="shore-hr-logo.png" alt="Shore HR" class="logo-img">
+    <img src="shore-hr-logo.png" alt="Shore HR" class="logo-img" onerror="this.outerHTML='<span class=&quot;logo-text-fallback&quot;>SHORE HR</span>'">
   </a>
   <span class="header-tag">Practical, Honest HR Support</span>
 </header>
@@ -712,8 +744,8 @@
   <div class="screen active" id="s-intro">
 
     <div class="intro-hero">
-      <h1 class="intro-headline">The Workplace Audit</h1>
-      <p class="intro-sub">7 questions to find out how intentionally your organisation is built — and where the risks are.</p>
+      <h1 class="intro-headline">Is your workplace actually working?</h1>
+      <p class="intro-sub">7 quick questions to find out how intentionally your organisation is built, and where the risks are.</p>
       <button class="btn-start" onclick="startQuiz()">Start the audit →</button>
     </div>
 
@@ -724,11 +756,13 @@
           src="nat-shore-hr.jpeg"
           alt="Natalie Lakin, Shore HR"
           class="nat-photo"
-          onerror="this.style.display='none'"
+          onerror="this.outerHTML='<div class=&quot;nat-photo img-ph&quot;>Photo</div>'"
         >
         <div>
-          <p>I work with managers and directors who care about getting HR right — not just staying out of trouble. This audit covers the things I look at first: how you hire, how you build a culture people actually stay in, how your managers handle things when they get difficult, and where the current legal changes land for your organisation. When you're done, I'll personally review your answers and follow up if there's anything worth a conversation. No automated emails. Just me.</p>
-          <span class="nat-sig">— Natalie Lakin, Shore HR</span>
+          <p>Hi, I'm Natalie, an HR partner for every stage of a company's life. I've spent 20 years in HR, including senior HR business partner roles inside companies like Reckitt, across construction, manufacturing, retail and logistics. I'm CIPD qualified, with a Master's in HR Management.</p>
+          <p>What that means for you: I've worked on the inside of organisations like yours, not just advised from a distance. I know the difference between HR that keeps you legal and HR that builds a workplace people want to stay in.</p>
+          <p>This audit takes about five minutes. Answer 7 questions, get a straight read on where your organisation stands, and if you'd like me to talk through your results with you, just leave your details at the end.</p>
+          <span class="nat-sig">Natalie Lakin, Shore HR</span>
         </div>
       </div>
     </div>
@@ -774,28 +808,23 @@
 
       <h2 class="result-h" id="r-title"></h2>
       <p class="result-intro-text" id="r-intro"></p>
-
-      <div class="accent-mark">
-        <div class="bar"></div>
-        <div class="caption">Result reviewed personally by Shore HR</div>
-      </div>
     </div>
 
     <div class="results-body">
-      <p class="tips-label" id="r-tips-label">Here's what to know:</p>
+      <p class="flagged" id="r-flagged"></p>
+      <p class="tips-label" id="r-tips-label">Here's what to know</p>
       <div id="r-tips"></div>
 
       <div class="cta-card">
         <div class="cta-row">
           <img
             src="nat-shore-hr.jpeg"
-            alt="Nat"
+            alt="Natalie"
             class="cta-nat"
-            onerror="this.style.display='none'"
+            onerror="this.outerHTML='<div class=&quot;cta-nat img-ph&quot;>Photo</div>'"
           >
           <div class="cta-nat-text">
-            Want Nat to take a look?
-            <small>Personally, not an automation</small>
+            Want me to take a look?
           </div>
         </div>
         <p class="cta-p" id="r-cta-text"></p>
@@ -825,36 +854,41 @@
             </div>
 
             <div class="field-group">
-              <label class="field-label" for="f-org">
-                Organisation name <span class="field-optional">(optional)</span>
-              </label>
-              <input type="text" id="f-org" name="organisation_name" class="field-input" placeholder="Your organisation">
+              <label class="field-label" for="f-org">Organisation name</label>
+              <input type="text" id="f-org" name="organisation_name" class="field-input" placeholder="Your organisation" required>
             </div>
 
             <div class="gdpr-box">
               <input type="checkbox" id="f-gdpr" name="gdpr_consent" value="yes" required>
               <label class="gdpr-label" for="f-gdpr">
-                I'm happy for Shore HR to contact me about my results. I understand my information will be handled in line with the <a href="#" target="_blank">privacy policy</a>.
+                I'm happy for Shore HR to contact me about my results. I understand my information will be handled in line with the <a href="privacy-notice.html" target="_blank">privacy notice</a>.
               </label>
             </div>
 
-            <p class="err" id="f-err">Please fill in your name and email address, and tick the consent box to continue.</p>
+            <div class="gdpr-box opt-box">
+              <input type="checkbox" id="f-marketing" name="marketing_consent" value="yes">
+              <label class="gdpr-label" for="f-marketing">
+                I'd also like the occasional HR tip or update from Shore HR. Optional, and you can unsubscribe any time.
+              </label>
+            </div>
 
-            <button type="button" class="btn-submit" onclick="handleSubmit()">Send my results to Nat →</button>
+            <p class="err" id="f-err">Please fill in your name, email address and organisation name, and tick the consent box to continue.</p>
+
+            <button type="button" class="btn-submit" onclick="handleSubmit()">Send my results to Natalie →</button>
 
           </form>
         </div>
 
         <div id="cta-sent" style="display:none;" class="form-sent">
-          <p>Done — Nat will be in touch.</p>
-          <p class="sent-sub">She'll have your results in front of her when she reaches out, so no need to explain everything from scratch.</p>
+          <p>Done. I'll be in touch.</p>
+          <p class="sent-sub">I'll have your results in front of me, so no need to explain everything from scratch.</p>
         </div>
 
       </div>
     </div>
 
     <div class="tool-footer">
-      <a href="https://www.shorehr.co.uk">Shore HR</a> · <a href="#">Privacy Policy</a><br>
+      <a href="https://www.shorehr.co.uk">Shore HR</a> · <a href="privacy-notice.html">Privacy Notice</a><br>
       Shore HR Limited · Driffield, East Yorkshire
     </div>
 
@@ -879,20 +913,22 @@ const Qs = [
     ]
   },
   {
-    text: "When you're hiring, do you have a clear sense of what kind of person thrives in your organisation — and does your recruitment process reflect that?",
+    text: "When you're hiring, is your recruitment process actually built around the kind of person who does well in your organisation?",
     scored: true,
     field: "lq2",
+    topic: "how you recruit",
     opts: [
       { label: "Yes, it's something we're deliberate about", score: 3 },
-      { label: "We have a sense of it but the process isn't really built around it", score: 2 },
+      { label: "We have a sense of it, but the process isn't really built around it", score: 2 },
       { label: "Mostly we hire for skills and hope for the best", score: 1 },
-      { label: "Recruitment is a bit ad hoc if I'm honest", score: 0 }
+      { label: "Recruitment is a bit ad hoc, if I'm honest", score: 0 }
     ]
   },
   {
     text: "Beyond avoiding problems, does your organisation have a deliberate plan for creating a workplace people actually want to stay in?",
     scored: true,
     field: "lq3",
+    topic: "building your culture on purpose",
     opts: [
       { label: "Yes, it's something we actively work on", score: 3 },
       { label: "We think about it but it's not really structured", score: 2 },
@@ -901,46 +937,50 @@ const Qs = [
     ]
   },
   {
-    text: "When a performance or behaviour issue arises in your organisation, do your managers typically address it promptly — or does it tend to get avoided until it becomes a bigger problem?",
+    text: "When a performance or behaviour issue comes up, do your managers tend to address it promptly, or does it get left until it becomes a bigger problem?",
     scored: true,
     field: "lq4",
+    topic: "how managers handle issues",
     opts: [
       { label: "They address things promptly as a rule", score: 3 },
-      { label: "It varies — some managers are better than others", score: 2 },
+      { label: "It varies, some managers are better than others", score: 2 },
       { label: "Issues tend to get avoided until they escalate", score: 1 },
       { label: "We don't have a consistent approach", score: 0 }
     ]
   },
   {
-    text: "Do you have a clear picture of why people leave your organisation — and just as importantly, why people stay?",
+    text: "Do you have a clear picture of why people stay with your organisation, not just why they leave?",
     scored: true,
     field: "lq5",
+    topic: "understanding why people stay",
     opts: [
-      { label: "Yes, we have good insight into both", score: 3 },
-      { label: "We have a rough idea but it's more gut feel than data", score: 2 },
-      { label: "We track leavers but haven't thought much about why people stay", score: 1 },
-      { label: "Not really — people leave and we move on", score: 0 }
+      { label: "Yes, we have good insight into that", score: 3 },
+      { label: "We have a rough idea, but it's more gut feel than data", score: 2 },
+      { label: "We track leavers, but haven't thought much about why people stay", score: 1 },
+      { label: "Not really, people leave and we move on", score: 0 }
     ]
   },
   {
-    text: "Since October 2024, employers have a legal duty to proactively prevent sexual harassment at work — not just respond when something happens. Are you confident your organisation is meeting that duty?",
+    text: "Since October 2024, employers have a legal duty to proactively prevent sexual harassment at work, not just respond when something happens. Are you confident your organisation is meeting that duty?",
     scored: true,
     field: "lq6",
+    topic: "the sexual harassment duty",
     opts: [
       { label: "Yes, we have steps in place", score: 3 },
       { label: "We've looked at it but I'm not fully confident", score: 2 },
-      { label: "Not yet — this needs attention", score: 1 },
+      { label: "Not yet, this needs attention", score: 1 },
       { label: "I wasn't aware this was a legal duty", score: 0 }
     ]
   },
   {
-    text: "From October 2026, employers will have a new duty to inform workers of their right to join a trade union — and union reps will gain new rights to workplace access and facilities. How prepared does your organisation feel for these changes?",
+    text: "From October 2026, employers will have a new duty to tell workers about their right to join a trade union, and union reps will gain new rights to workplace access and facilities. How prepared does your organisation feel for that?",
     scored: true,
     field: "lq7",
+    topic: "the 2026 trade union changes",
     opts: [
       { label: "We're across it and already thinking about it", score: 3 },
-      { label: "We're aware but haven't done anything yet", score: 2 },
-      { label: "We'd heard something about this but don't have the detail", score: 1 },
+      { label: "We're aware, but haven't done anything yet", score: 2 },
+      { label: "We'd heard something about this, but don't have the detail", score: 1 },
       { label: "This is the first I've heard of it", score: 0 }
     ]
   }
@@ -953,61 +993,61 @@ const Results = {
   green: {
     color: "green",
     title: "Your workplace is working for you",
-    intro: "The audit confirms what your answers suggest — you're thinking about your workplace deliberately, not just reacting to things when they go wrong. That's not as common as you'd think.",
-    tipsLabel: "A couple of things worth staying across:",
+    intro: "The audit confirms what your answers suggest. You're thinking about your workplace deliberately, not just reacting when things go wrong. That's rarer than you'd think.",
+    tipsLabel: "A couple of things worth staying across",
     tips: [
       {
-        heading: "October 2026 trade union changes are closer than they look",
-        body: "The new duty to inform workers of their right to join a trade union comes in October 2026, along with new rights to workplace access for union reps and time off for union equality representatives. Most organisations haven't started thinking about this yet. The practical ask is manageable — but working out what you need to do in advance is much easier than scrambling once it's already in force."
+        heading: "The October 2026 trade union changes are closer than they look",
+        body: "From October 2026, employers have a new duty to tell workers about their right to join a trade union, along with new rights for union reps to access the workplace and time off for union equality representatives. Most organisations haven't started thinking about this yet. The practical ask is manageable, but working it out in advance beats scrambling once it's already in force."
       },
       {
-        heading: "Culture and compliance drift apart during busy periods",
-        body: "Even organisations with solid foundations tend to let things slip when the pressure's on. A review every 6-12 months — recruitment process, how managers are handling things, what your retention data is actually telling you — keeps everything honest and means you're not surprised by something you could have spotted earlier."
+        heading: "Culture and compliance drift apart when things get busy",
+        body: "Even organisations with solid foundations let things slip when the pressure's on. A review every 6 to 12 months (recruitment process, how managers are handling things, what your retention data is actually telling you) keeps everything honest. It means you're not caught out by something you could have spotted earlier."
       }
     ],
-    cta: "Nat will personally follow up — mostly to share a few things worth staying across even when you're in good shape. No obligation. Just a quick conversation."
+    cta: "Enter your details below and I'll be in touch to discuss your answers."
   },
   amber: {
     color: "amber",
     title: "A few things worth building on",
-    intro: "There's a solid base here — but the audit has flagged some areas where you're running on instinct rather than intention. The kind of things that don't cause problems right away, but tend to when the pressure's on.",
-    tipsLabel: "Here's what to know:",
+    intro: "There's something to build on here. But the audit has flagged some real gaps, areas where you're going on gut feel rather than a proper plan. That's the kind of thing that's fine until it isn't, usually when the pressure's on.",
+    tipsLabel: "Here's what to know",
     tips: [
       {
         heading: "Manager avoidance is where most employment disputes start",
-        body: "If issues tend to get left until they escalate, that's worth addressing. Not because it reflects badly on your managers — most people find difficult conversations uncomfortable — but because by the time something reaches a formal stage, the options are much narrower. Early conversations with a bit of structure behind them make a significant difference, and they're easier to support than most managers expect."
+        body: "If issues tend to get left until they escalate, that's worth sorting. Not because it reflects badly on your managers (most people find difficult conversations uncomfortable), but because by the time something reaches a formal stage, your options are much narrower. Early conversations, with a bit of structure behind them, make a real difference. And they're easier to support than most managers expect."
       },
       {
-        heading: "The sexual harassment positive duty changed the rules in October 2024",
-        body: "Having a harassment policy and meeting the legal duty are two different things. The duty requires proactive steps — risk assessments, training, a visible commitment from leadership, and a clear route for people to raise concerns. A tribunal can uplift any sexual harassment compensation by up to 25% if the employer hasn't taken reasonable steps. Worth checking what's actually in place."
+        heading: "The sexual harassment duty changed the rules in October 2024",
+        body: "Having a harassment policy and meeting the legal duty are two different things. The duty means proactive steps: risk assessments, training, a visible commitment from leadership, and a clear route for people to raise concerns. A tribunal can increase any sexual harassment compensation by up to 25% if the employer hasn't taken reasonable steps. Worth checking what's actually in place."
       },
       {
-        heading: "October 2026 trade union changes — good time to get ahead",
-        body: "From October 2026, employers have a new duty to actively notify workers of their right to join a trade union, with new rights for union reps to access the workplace and facilities. For most organisations it's manageable — but it needs a plan, not a last-minute scramble. Getting clarity on what it means for your organisation now means you're prepared, not reactive."
+        heading: "The October 2026 trade union changes: a good time to get ahead",
+        body: "From October 2026, employers have a new duty to tell workers about their right to join a trade union, with new rights for union reps to access the workplace and facilities. For most organisations it's manageable, but it needs a plan, not a last-minute scramble. Getting clear on what it means for you now means you're prepared, not reactive."
       }
     ],
-    cta: "Nat will be in touch to talk through what the audit flagged specifically — no obligation, just a practical conversation about where to start."
+    cta: "Enter your details below and I'll be in touch to discuss your answers."
   },
   red: {
     color: "red",
     title: "Time to have a proper conversation",
-    intro: "The audit has flagged some things that need attention — on both the culture side and the compliance side. Most of this isn't complicated to sort. But it does need to be sorted. Better now than when something's already gone wrong.",
-    tipsLabel: "Where to start:",
+    intro: "I'll be straight with you. The audit has flagged some things that need attention, on both the culture side and the compliance side. Most of it isn't complicated to sort. But it does need sorting. Better now than when something's already gone wrong.",
+    tipsLabel: "Where to start",
     tips: [
       {
-        heading: "The Employment Rights Act changes are already live",
-        body: "Day-one unfair dismissal rights are now in force. That doesn't mean you can never let someone go in their first two years — but it does mean the process matters from day one, not just after a qualifying period. Without a clear approach from the start, even straightforward exits carry more risk than they used to. This is the thing most managers don't realise has already changed."
+        heading: "The unfair dismissal rules change in January 2027",
+        body: "From 1 January 2027, the qualifying period for an ordinary unfair dismissal claim drops from two years to six months. (Day-one dismissal rights were proposed, but didn't make the final Act.) It means the way you handle someone's first few months matters more than it used to. Get the process right from the start and a straightforward exit stays straightforward. This is the change most managers haven't clocked yet."
       },
       {
         heading: "The sexual harassment duty isn't satisfied by a policy",
-        body: "The October 2024 positive duty requires proactive steps — not a document in a drawer. Risk assessment, training, leadership commitment, and a clear route for raising concerns. A tribunal can uplift any sexual harassment compensation by up to 25% where the employer hasn't taken reasonable preventive steps. It's worth knowing exactly what's in place and what isn't."
+        body: "The October 2024 positive duty means proactive steps, not a document in a drawer. Risk assessment, training, leadership commitment, and a clear route for raising concerns. A tribunal can increase any sexual harassment compensation by up to 25% where the employer hasn't taken reasonable preventive steps. Worth knowing exactly what's in place and what isn't."
       },
       {
-        heading: "October 2026 trade union changes — don't let this catch you cold",
-        body: "From October 2026, employers must proactively inform workers of their right to join a trade union. Union reps also gain new rights to workplace access, facilities, and time off. If you're not across what's changing, now's the time to get a clear picture of what it means for your organisation before it's already in force."
+        heading: "Issues that get left don't get smaller",
+        body: "If performance and behaviour problems tend to get avoided until they boil over, that's worth tackling early. It's rarely that managers don't care. Difficult conversations are just uncomfortable, so they get put off. But the longer something runs, the harder and riskier it gets to deal with. Giving managers a bit of structure and backup for those first conversations changes the whole picture."
       }
     ],
-    cta: "Nat will personally follow up — she's already reviewed your answers, so the conversation can be specific to what your organisation actually needs."
+    cta: "Enter your details below and I'll be in touch to discuss your answers."
   }
 };
 
@@ -1108,6 +1148,26 @@ function showResults(b, s) {
   document.getElementById('r-tips-label').textContent = r.tipsLabel;
   document.getElementById('r-cta-text').textContent = r.cta;
 
+  // Reflect the weakest answers back to the reader
+  const weak = Qs
+    .map((q, i) => ({ q, i }))
+    .filter(x => x.q.scored && picks[x.i] !== null && x.q.opts[picks[x.i]].score <= 1)
+    .sort((a, b) => a.q.opts[picks[a.i]].score - b.q.opts[picks[b.i]].score)
+    .map(x => x.q.topic);
+  const flaggedEl = document.getElementById('r-flagged');
+  if (!weak.length) {
+    flaggedEl.style.display = 'none';
+  } else {
+    flaggedEl.style.display = 'block';
+    const list = weak.length === 1
+      ? weak[0]
+      : weak.slice(0, -1).join(', ') + ' and ' + weak[weak.length - 1];
+    const lead = weak.length === 1
+      ? 'From your answers, the main thing to look at is '
+      : 'From your answers, the areas to look at: ';
+    flaggedEl.innerHTML = lead + '<strong>' + list + '</strong>.';
+  }
+
   const tipsEl = document.getElementById('r-tips');
   tipsEl.innerHTML = r.tips.map(t => `
     <div class="tip-card">
@@ -1133,10 +1193,11 @@ function showResults(b, s) {
 function handleSubmit() {
   const name  = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim();
+  const org   = document.getElementById('f-org').value.trim();
   const gdpr  = document.getElementById('f-gdpr').checked;
   const err   = document.getElementById('f-err');
 
-  if (!name || !email || !gdpr) {
+  if (!name || !email || !org || !gdpr) {
     err.style.display = 'block';
     return;
   }
